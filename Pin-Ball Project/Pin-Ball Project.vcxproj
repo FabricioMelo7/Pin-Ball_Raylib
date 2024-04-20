@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Entities\Ball.cpp" />
+    <ClCompile Include="Entities\GameTable.cpp" />
     <ClCompile Include="Pin-Ball Project.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\Ball.h" />
+    <ClInclude Include="Entities\GameTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

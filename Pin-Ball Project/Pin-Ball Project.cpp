@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "Entities/Ball.h"
+#include "Entities/GameTable.h"
 
 void CameraSetUp(Camera& cam)
 {
@@ -23,6 +24,7 @@ int main()
 	InitWindow(1280, 720, "PinBallTable");
 
 	MoonSphere ball;
+	GameTable table;
 		
 	Camera cam = { 0 };
 	CameraSetUp(cam);	
@@ -35,12 +37,14 @@ int main()
 	while (!WindowShouldClose())
 	{		
 		BeginDrawing();
-
+		UpdateCamera(&cam, CAMERA_FIRST_PERSON);
 		ClearBackground(DARKGRAY);
 		BeginMode3D(cam);
-		DrawModel(ball.moon, pos, 1.0f, WHITE);
+		
+		table.Draw();
+		//DrawModel(ball.moon, pos, 1.0f, WHITE);
 		DrawGrid(20, 5.0f);
-		DrawBoundingBox(bounds, GREEN);
+		//DrawBoundingBox(bounds, GREEN);
 
 
 		EndMode3D();
