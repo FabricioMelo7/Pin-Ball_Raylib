@@ -7,25 +7,23 @@
 class GameTable
 {
 public:
-	GameTable();
+	GameTable(int windowWidth, int windowHeight);
 	~GameTable();
+
 	void Draw();
+    void Update();
 
 private:
-    Model tableModel;         
-    Vector3 tablePosition;    
+	Vector2 origin;
+	float width, height;
 
-    Model borderFrontModel;   
-    Model borderBackModel;
-    Model borderLeftModel;
-    Model borderRightModel;
+	Vector2 bumper[3];
+	float bumperRadius;
 
-    Mesh bumperMesh[3];       
-    Model bumperModel[3];     
-    Vector3 bumperPosition[3];
+	Rectangle leftFlipper, rightFlipper;
+	float flipperWidth, flipperHeight;
 
-    void initTable();         
-    void initBumpers();       
+	void initTable();
 
 };
 

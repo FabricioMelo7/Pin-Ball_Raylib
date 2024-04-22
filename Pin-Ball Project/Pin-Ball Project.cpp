@@ -4,7 +4,7 @@
 #include "Entities/Ball.h"
 #include "Entities/GameTable.h"
 
-void CameraSetUp(Camera& cam)
+/*void CameraSetUp(Camera& cam)
 {
 	cam.position.x = 10.0f;
 	cam.position.y = 10.0f;
@@ -17,17 +17,20 @@ void CameraSetUp(Camera& cam)
 	cam.up.z = 0.0f;
 	cam.fovy = 50.0f;
 	cam.projection = CAMERA_PERSPECTIVE;
-}
+}*/
 
 int main()
 {
-	InitWindow(1280, 720, "PinBallTable");
+	const int windowWidth = 720;
+	const int windowHeight = 1000;
+
+	InitWindow(windowWidth, windowHeight, "PinBallTable");
 
 	MoonSphere ball;
-	GameTable table;
+	GameTable table(windowWidth, windowHeight);
 		
-	Camera cam = { 0 };
-	CameraSetUp(cam);	
+	Camera2D cam = { 0 };
+	
 	Vector3 pos = { 0.0f, 0.0f , 0.0f };
 	BoundingBox bounds = GetMeshBoundingBox(ball.moon.meshes[0]);
 
@@ -36,10 +39,9 @@ int main()
 
 	while (!WindowShouldClose())
 	{		
-		BeginDrawing();
-		UpdateCamera(&cam, CAMERA_FIRST_PERSON);
+		BeginDrawing();		
 		ClearBackground(DARKGRAY);
-		BeginMode3D(cam);
+		BeginMode2D(cam);
 		
 		table.Draw();
 		//DrawModel(ball.moon, pos, 1.0f, WHITE);

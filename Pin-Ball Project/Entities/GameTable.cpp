@@ -1,58 +1,56 @@
 #include "GameTable.h"
 
-GameTable::GameTable()
-{
+GameTable::GameTable(int windowWidth, int windowHeight)
+{	
+	width = 500.0f;
+	height = 900.0f;
+	origin.x = (windowWidth - width) / 2;
+	origin.y = (windowHeight - height) / 2;
+	bumperRadius = 20;
 	initTable();
-	initBumpers();
 }
 
 GameTable::~GameTable()
 {
-	UnloadModel(tableModel);
-	UnloadModel(borderFrontModel);
-	UnloadModel(borderBackModel);
-	UnloadModel(borderLeftModel);
-	UnloadModel(borderRightModel);
-
-	for (int i = 0; i < 3; i++) {
-		UnloadModel(bumperModel[i]);
-	}
+	
 }
 
 void GameTable::initTable()
 {
-	// base table
-	Mesh tableMesh = GenMeshCube(5.0f, 0.1f, 10.0f);
-	tableModel = LoadModelFromMesh(tableMesh);
-	tablePosition = { 0.0f, 0.0f, 0.0f };
+	//Temporary bumpers, used to have a better layout idea
+	bumper[0] = { origin.x + width / 3, origin.y + height / 2 };
+	bumper[1] = { origin.x + width / 2, origin.y + height / 3 };
+	bumper[2] = { origin.x + 2 * width / 3, origin.y + 2 * height / 3 };
 
-	// separate models for each border
-	Mesh borderMesh = GenMeshCube(5.0f, 0.5f, 0.5f);
-	borderFrontModel = LoadModelFromMesh(borderMesh);
-	borderBackModel = LoadModelFromMesh(borderMesh);
-	borderLeftModel = LoadModelFromMesh(GenMeshCube(0.5f, 0.5f, 10.0f));
-	borderRightModel = LoadModelFromMesh(GenMeshCube(0.5f, 0.5f, 10.0f));
-}
-
-void GameTable::initBumpers()
-{
-	for (size_t i = 0; i < 3; i++)
-	{
-		bumperMesh[i] = GenMeshSphere(0.5f, 32.0f, 32.0f);
-		bumperModel[i] = LoadModelFromMesh(bumperMesh[i]);
-		bumperPosition[i] = { (float)(i - 1) * 2.5f, 1.0f, 0.0f };
-	}
+	// Setting up initial flipper's layout
+	flipperWidth = 60;
+	flipperHeight = 10;
+	leftFlipper = { origin.x + 100, origin.y + height - 20, flipperWidth, flipperHeight };
+	rightFlipper = { origin.x + width - 100 - flipperWidth, origin.y + height - 20, flipperWidth, flipperHeight };
 }
 
 void GameTable::Draw()
 {
-	DrawModel(tableModel, tablePosition, 1.0f, RED);
-	DrawModel(borderFrontModel, { 0, 0.25f, -4.75f }, 1.0f, WHITE);
-	DrawModel(borderBackModel, { 0, 0.25f, 4.75f }, 1.0f, WHITE);
-	DrawModel(borderLeftModel, { -2.25f, 0.25f, 0 }, 1.0f, WHITE);
-	DrawModel(borderRightModel, { 2.25f, 0.25f, 0 }, 1.0f, WHITE);
+	BeginDrawing();
+	ClearBackground(DARKGRAY);
 
-	for (int i = 0; i < 3; i++) {
-		DrawModel(bumperModel[i], bumperPosition[i], 1.0f, GREEN);
+	// Outer borders of the pinball table
+	DrawRectangleLines(origin.x, origin.y, width, height, BLACK); // Main border
+	// Inner borders for a depth effect
+	DrawRectangleLines(origin.x + 5, origin.y + 5, width - 10, height - 10, BLACK);
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		DrawCircle(bumper[i].x, bumper[i].y, bumperRadius, RED);
 	}
+
+	DrawRectangleRec(leftFlipper, GREEN);
+	DrawRectangleRec(rightFlipper, GREEN);
+
+	EndDrawing;
+}
+
+void GameTable::Update()
+{
+	// Flipper movement
 }
