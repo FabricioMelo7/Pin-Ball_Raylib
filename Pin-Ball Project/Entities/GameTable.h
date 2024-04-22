@@ -11,7 +11,7 @@ public:
 	~GameTable();
 
 	void Draw();
-    void Update();
+	void PlayerInput();
 
 private:
 	Vector2 origin;
@@ -22,9 +22,11 @@ private:
 
 	Rectangle leftFlipper, rightFlipper;
 	float flipperWidth, flipperHeight;
+	float leftFlipperAngle, rightFlipperAngle;
+	Vector2 leftPivot, rightPivot;
 
 	void initTable();
-
+	void initBumpers();
 };
 
 #endif // GAMETABLE_H

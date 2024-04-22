@@ -12,7 +12,7 @@ GameTable::GameTable(int windowWidth, int windowHeight)
 
 GameTable::~GameTable()
 {
-	
+	//TO-DO
 }
 
 void GameTable::initTable()
@@ -22,16 +22,47 @@ void GameTable::initTable()
 	bumper[1] = { origin.x + width / 2, origin.y + height / 3 };
 	bumper[2] = { origin.x + 2 * width / 3, origin.y + 2 * height / 3 };
 
-	// Setting up initial flipper's layout
 	flipperWidth = 60;
 	flipperHeight = 10;
-	leftFlipper = { origin.x + 100, origin.y + height - 20, flipperWidth, flipperHeight };
-	rightFlipper = { origin.x + width - 100 - flipperWidth, origin.y + height - 20, flipperWidth, flipperHeight };
+
+	//left Flipper
+	leftFlipper = 
+	{ 
+		origin.x + (width / 2) - 80, 
+		origin.y + height - flipperHeight - 20,
+		flipperWidth, 
+		flipperHeight 
+	};
+
+	leftFlipperAngle = 45.0f;
+
+	leftPivot = //This sets the rotation pivot to the left middle point.	
+	{
+		0,
+		leftFlipper.height / 2
+	};
+
+	//Right Flipper
+	rightFlipper = 
+	{
+		origin.x + (width / 2) + 60, 
+		origin.y + height - flipperHeight - 20, 
+		flipperWidth, 
+		flipperHeight 
+	};
+
+	rightFlipperAngle = -45.0f; 
+
+	rightPivot = //This sets the rotation pivot to the right middle point.	
+	{
+		rightFlipper.width,                   
+		rightFlipper.height / 2
+	};
 }
 
 void GameTable::Draw()
 {
-	BeginDrawing();
+	
 	ClearBackground(DARKGRAY);
 
 	// Outer borders of the pinball table
@@ -44,13 +75,43 @@ void GameTable::Draw()
 		DrawCircle(bumper[i].x, bumper[i].y, bumperRadius, RED);
 	}
 
-	DrawRectangleRec(leftFlipper, GREEN);
-	DrawRectangleRec(rightFlipper, GREEN);
+	//DrawRectangle(leftFlipper.x, leftFlipper.y, flipperWidth, flipperHeight, DARKGREEN);
+	
+	DrawRectanglePro(leftFlipper, leftPivot, leftFlipperAngle, DARKGREEN);
+	DrawRectanglePro(rightFlipper, rightPivot, rightFlipperAngle, DARKGREEN);	
+
+	DrawCircle(origin.x, origin.y, 10, PURPLE);
 
 	EndDrawing;
 }
 
-void GameTable::Update()
+void GameTable::PlayerInput()
 {
-	// Flipper movement
+	if (IsKeyDown(KEY_LEFT) && leftFlipperAngle > -20)
+	{
+		leftFlipperAngle -= 10;
+	}
+
+	if (IsKeyDown(KEY_LEFT) && leftFlipperAngle == -20)
+	{
+		leftFlipperAngle = -20;
+	}
+	else if(leftFlipperAngle < 45)
+	{
+		leftFlipperAngle += 5;
+	}
+
+	if(IsKeyDown(KEY_RIGHT) && rightFlipperAngle < 20)
+	{
+		rightFlipperAngle += 10;
+	}
+
+	if (IsKeyDown(KEY_RIGHT) && rightFlipperAngle == 20)
+	{
+		rightFlipperAngle = 20;
+	}
+	else if (rightFlipperAngle > -45)
+	{
+		rightFlipperAngle -= 5;
+	}	
 }
