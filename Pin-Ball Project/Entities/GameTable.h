@@ -11,11 +11,11 @@ public:
 	~GameTable();
 
 	void Draw();
-	void PlayerInput();
 
-private:
 	Vector2 origin;
 	float width, height;
+
+private:
 
 	Vector2 bumper[3];
 	float bumperRadius;
@@ -26,7 +26,7 @@ private:
 	Vector2 leftPivot, rightPivot;
 
 	void initTable();
-	void initBumpers();
+	//void initBumpers(); // FOR LATER...
 };
 
 #endif // GAMETABLE_H
