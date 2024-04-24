@@ -14,7 +14,7 @@ float Flippers::SetFlipperAngle(Flippers_Enums side)
 	}
 }
 
-Flippers::Flippers(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums side)
+Flippers::Flippers(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums side, float power) :m_power_value(power), side(side)
 {
 	m_flipperWidth = 60;
 	m_flipperHeight = 10;

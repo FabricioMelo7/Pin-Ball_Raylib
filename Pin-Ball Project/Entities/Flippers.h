@@ -4,17 +4,28 @@
 #define FLIPPER_H
 
 #include <raylib.h>
-#include "Flippers_Enums.h"
+#include "../Enums/Flippers_Enums.h"
 
 class Flippers
 {
 public:
-	Flippers(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums side);
+	Flippers(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums side, float power);	
 	
-	float m_flipperAngle;
+	Flippers_Enums side;
+
 	float m_flipperWidth;
 	float m_flipperHeight;
 	Vector2 m_pivotPoint;
+
+	//Physics
+	const float m_power_value = 70.0f;
+	//Vector2 m_Power = { 0.0f, 0.0f };
+	float mass = 0.1;
+	Vector2 force = { 0.0f, 0.0f };
+	float m_flipperAngle;
+	Vector2 dr = { 0.0f, 0.0f };
+	Vector2 v = { 0.0f, 0.0f };
+	Vector2 dv = { 0.0f, 0.0f };	
 
 	Rectangle m_flipperRec;
 	void Draw();
