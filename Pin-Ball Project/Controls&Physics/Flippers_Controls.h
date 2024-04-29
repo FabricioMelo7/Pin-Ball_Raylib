@@ -13,6 +13,10 @@ public:
 	void PlayerInput( std::vector<Flippers*> flippers, float deltaTime);
 
 private:
+	void SetCorners(Vector2 corners[], int size, Rectangle& boundBox);
+	Rectangle RotateBoundignBox(Rectangle boundBox, float angle, Vector2 pivot);
+	void DrawFlipperBoundingBox(Flippers* flipper);
+
 	void HandleLeftInput(Flippers* flipper, float deltaTime);
 	void HandleRightInput(Flippers* flipper, float deltaTime);
 

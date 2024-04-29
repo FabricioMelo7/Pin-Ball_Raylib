@@ -5,9 +5,11 @@
 #include "Entities/GameTable.h"
 #include "Entities/Flippers.h"
 #include "Controls&Physics/Flippers_Controls.h"
+#include "Controls&Physics/Flippers_Collision.h"
 #include <vector>
 
 std::vector<Flippers*> flipperList;
+
 
 int main()
 {
@@ -25,6 +27,7 @@ int main()
 	flipperList.push_back(&rightFlipper);	
 	
 	Flippers_Controls flipperControl;
+	Flippers_Collision flipperCollision;
 	
 	//Vector3 pos = { 0.0f, 0.0f , 0.0f };
 	//BoundingBox bounds = GetMeshBoundingBox(ball.moon.meshes[0]);
@@ -41,8 +44,9 @@ int main()
 		
 		table.Draw();		
 
-		flipperControl.PlayerInput(flipperList, DeltaTime);
-		leftFlipper.Draw();		
+		flipperControl.PlayerInput(flipperList, DeltaTime);		
+		
+		leftFlipper.Draw();			
 		rightFlipper.Draw();
 
 		//DrawModel(ball.moon, pos, 1.0f, WHITE);

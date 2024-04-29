@@ -30,6 +30,9 @@
     <ClCompile Include="Controls&amp;Physics\Flippers_Controls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Controls&amp;Physics\Flippers_Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Moon.obj" />
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controls&amp;Physics\Flippers_Controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls&amp;Physics\Flippers_Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
