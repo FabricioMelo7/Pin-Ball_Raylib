@@ -10,7 +10,7 @@ class Flippers
 {
 public:
 	Flippers(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums side, float power);	
-	
+
 	Flippers_Enums side;
 
 	float m_flipperWidth;
@@ -34,7 +34,7 @@ private:
 	float SetFlipperAngle(Flippers_Enums side);
 	void InitFlipper(Vector2 originPosition, float tableWidth, float tableHeight, Flippers_Enums);
 	void SetLeftFlipper(Vector2 originPosition, float tableWidth, float tableHeight);
-	void SetRightFlipper(Vector2 originPosition, float tableWidth, float tableHeight);
+	void SetRightFlipper(Vector2 originPosition, float tableWidth, float tableHeight);	
 };
 
 #endif

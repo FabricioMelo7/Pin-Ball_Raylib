@@ -1,14 +1,17 @@
 #include "Ball.h"
 
-void ApplyTexture(Model& obj, Texture2D& tex)
+Ball::Ball(float x, float y, float radius, Color color) :m_radius(radius), m_color(color)
 {
-	obj.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = tex;
+	m_bounds.x = x - radius;
+	m_bounds.y = y - radius;
+	m_bounds.width = 2 * radius;
+	m_bounds.height = 2 * radius;
 }
 
-MoonSphere::MoonSphere()
+void Ball::Draw()
 {
-	 moon = LoadModel("Moon.obj");
-	 tex = LoadTexture("MoonTexture.png");
-	 ApplyTexture(moon, tex);
+	DrawCircle(m_bounds.x + m_radius, m_bounds.y + m_radius, m_radius, m_color);
 }
+
+
 

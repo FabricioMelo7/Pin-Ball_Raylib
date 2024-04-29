@@ -24,7 +24,7 @@ Flippers::Flippers(Vector2 originPosition, float tableWidth, float tableHeight, 
 }
 
 void Flippers::SetLeftFlipper(Vector2 originPosition, float tableWidth, float tableHeight)
-{
+{	
 	m_flipperRec =
 	{
 		originPosition.x + (tableWidth / 2) - 80,
@@ -73,5 +73,8 @@ void Flippers::InitFlipper(Vector2 originPosition, float tableWidth, float table
 
 void Flippers::Draw()
 {
+	//Rectangle boundBox = { m_flipperRec.x, m_flipperRec.y, m_flipperRec.width, m_flipperRec.height };
+	
 	DrawRectanglePro(m_flipperRec, m_pivotPoint, m_flipperAngle, DARKGREEN);
+	DrawRectangleLines(m_flipperRec.x,m_flipperRec.y, m_flipperRec.width, m_flipperRec.height, PURPLE);
 }

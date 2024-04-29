@@ -132,6 +132,7 @@
     <ClCompile Include="Entities\Flippers.cpp" />
     <ClCompile Include="Controls&amp;Physics\Flippers_Controls.cpp" />
     <ClCompile Include="Controls&amp;Physics\Flippers_Collision.cpp" />
+    <ClCompile Include="Controls&amp;Physics\Gravity.cpp" />
     <ClCompile Include="Pin-Ball Project.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="Enums\Flippers_Enums.h" />
     <ClInclude Include="Controls&amp;Physics\Flippers_Controls.h" />
     <ClInclude Include="Controls&amp;Physics\Flippers_Collision.h" />
+    <ClInclude Include="Controls&amp;Physics\Gravity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

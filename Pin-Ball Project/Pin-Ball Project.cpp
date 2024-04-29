@@ -5,11 +5,10 @@
 #include "Entities/GameTable.h"
 #include "Entities/Flippers.h"
 #include "Controls&Physics/Flippers_Controls.h"
-#include "Controls&Physics/Flippers_Collision.h"
+#include "Controls&Physics/Gravity.h"
 #include <vector>
 
 std::vector<Flippers*> flipperList;
-
 
 int main()
 {
@@ -19,7 +18,7 @@ int main()
 	InitWindow(windowWidth, windowHeight, "PinBallTable");
 
 	float DeltaTime = 0.06;
-	//MoonSphere ball;
+	Ball ball(150, 95, 10, BLACK);
 	GameTable table(windowWidth, windowHeight);
 	Flippers leftFlipper(table.origin, table.width, table.height, Flippers_Enums::LeftSideFlipper, -70.0f);
 	Flippers rightFlipper(table.origin, table.width, table.height, Flippers_Enums::RightSideFlipper, 70.0f);
@@ -27,11 +26,11 @@ int main()
 	flipperList.push_back(&rightFlipper);	
 	
 	Flippers_Controls flipperControl;
-	Flippers_Collision flipperCollision;
+	/*Flippers_Collision flipperCollision;*/
 	
 	//Vector3 pos = { 0.0f, 0.0f , 0.0f };
 	//BoundingBox bounds = GetMeshBoundingBox(ball.moon.meshes[0]);
-
+	
 	SetTargetFPS(60); 
 	
 	//MAIN GAME LOOP!
@@ -39,15 +38,15 @@ int main()
 	{		
 		BeginDrawing();		
 		ClearBackground(DARKGRAY);
-		
-		//table.PlayerInput();
-		
+				
 		table.Draw();		
-
+		ApplyGravity(ball, DeltaTime);
 		flipperControl.PlayerInput(flipperList, DeltaTime);		
 		
 		leftFlipper.Draw();			
 		rightFlipper.Draw();
+
+		ball.Draw();
 
 		//DrawModel(ball.moon, pos, 1.0f, WHITE);
 		
